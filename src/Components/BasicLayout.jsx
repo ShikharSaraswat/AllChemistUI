@@ -1,59 +1,43 @@
 import React from "react";
-import Home from "./Home/Home";
+//import Home from "./Home/Home";
 // import Login from "./Form/Login";
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link
-// } from "react-router-dom";
 import 'antd/dist/antd.css';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import MyHeader from './MyHeader';
+import { Layout, Breadcrumb } from 'antd';
+import Login from "./Form/Login";
 const { Header, Content, Footer } = Layout;
 
 
 
 
-function BasicLayout(){
+function BasicLayout() {
 
-  return(
-   
-  <Layout className="layout">
-  <Header>
-    <div className="logo" />
-    <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-      <Menu.Item key="1">Home</Menu.Item>
-      <Menu.Item key="2">Helpdesk</Menu.Item>
-      <Menu.Item key="3">About</Menu.Item>
-      <Menu.Item key="4">Login</Menu.Item>
-    </Menu>
-  </Header>
-  <Content style={{ padding: '0 50px' }}>
+  const [page,setPage] = React.useState(" "); 
 
-    <Breadcrumb style={{ margin: '16px 0' }}>
-      {/* <Breadcrumb.Item>Home</Breadcrumb.Item>
+  return (
+
+    <Layout className="layout">
+      <Header><MyHeader setState={setPage}  sendState={page}/></Header>
+
+
+      <Content style={{ padding: '0 50px' }}>
+
+        <Breadcrumb style={{ margin: '16px 0' }}>
+          {/* <Breadcrumb.Item>Home</Breadcrumb.Item>
       <Breadcrumb.Item>List</Breadcrumb.Item>
       <Breadcrumb.Item>App</Breadcrumb.Item> */}
-    </Breadcrumb>
-    
-    <div className="site-layout-content">
+        </Breadcrumb>
 
-    
-      
-      
+        <div className="site-layout-content">
 
-    
-   
-    
-    
-    
-    
-    
-    </div>
-  </Content>
-  <Footer style={{ textAlign: 'center' }}>AllChemist ©2021 Created by Group 25</Footer>
-</Layout>);
-  
+          {/* <Login /> */}
+          <h1>{page}</h1>
+
+        </div>
+      </Content>
+      <Footer style={{ textAlign: 'center' }}>AllChemist ©2021 Created by Group 25</Footer>
+    </Layout>);
+
 }
 
 export default BasicLayout;
