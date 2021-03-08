@@ -3,15 +3,14 @@ import "../Components/Avatar.css";
 import Login from "./Form/Login";
 
 function Avatar(props) {
+  const stateSetter = props.stateSetter 
   function loginLoader() {
-    //const setter = props.setState;
-    // const setter = useContext();
-    // setter(<Login />);
+    stateSetter(<Login />)
   }
   return (
     <img
       className="circle-img"
-      onClick={loginLoader}
+      onClick={loginLoader} 
       src={props.imgUrl}
       alt="avatar_img"
     />

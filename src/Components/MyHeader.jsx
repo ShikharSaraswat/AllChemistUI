@@ -7,29 +7,32 @@ import About from "./About";
 //import Header from 'antd'; // Does not work
 
 function MyHeader(props) {
+ 
+  const stateSetter = props.stateSetter;
+
   function homeLoader() {
-    const setter = props.setState;
-    setter(<Home setState={setter} />);
+    stateSetter(<Home stateSetter={stateSetter} />);
   }
 
   function loginLoader() {
-    const setter = props.setState;
-    setter(<Login />);
+    
+    stateSetter(<Login />);
   }
 
   function helpdeskLoader() {
-    const setter = props.setState;
-    setter(<Helpdesk />);
+   
+    stateSetter(<Helpdesk />);
   }
 
   function aboutLoader() {
-    const setter = props.setState;
-    setter(<About />);
+
+    stateSetter(<About />);
   }
 
   return (
     <>
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
+      <Menu theme="dark" mode="horizontal" >
+      {/* defaultSelectedKeys={[" "]} */}
         <div className="logo" />
         <Menu.Item key="1" onClick={homeLoader}>
           Home
