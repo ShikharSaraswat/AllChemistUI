@@ -1,6 +1,18 @@
+ul.Avtar {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  list-style-type: none;
+}
+
+ul.Avtar > li {
+  height: 20vh;
+  flex-grow: 1;
+}
+
 .circle-img {
-    border-radius: 50%;
-    border: 7px solid #fff;
-    width: 120px;
-    height: 120px;
-  }
+  border-radius: 50%;
+  border: 7px solid #fff;
+  width: 200px;
+  height: 200px;
+}

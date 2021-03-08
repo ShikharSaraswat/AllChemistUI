@@ -1,7 +1,21 @@
 import React from "react";
-import '../Components/Avatar.css';
-function Avatar() {
-  return <img className="circle-img" src="https://toppng.com/uploads/preview/animated-doctor-animated-pictures-of-a-doctor-11562922665japjgbanai.png" alt="avatar_img" />;
+import "../Components/Avatar.css";
+import Login from "./Form/Login";
+
+function Avatar(props) {
+  function loginLoader() {
+    //const setter = props.setState;
+    // const setter = useContext();
+    // setter(<Login />);
+  }
+  return (
+    <img
+      className="circle-img"
+      onClick={loginLoader}
+      src={props.imgUrl}
+      alt="avatar_img"
+    />
+  );
 }
 
 export default Avatar;
