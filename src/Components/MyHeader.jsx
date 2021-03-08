@@ -4,6 +4,7 @@ import Login from "./Form/Login";
 import Home from "./Home/Home";
 import Helpdesk from "./Helpdesk";
 import About from "./About";
+import logo from "./LOGO2.jpg"
 //import Header from 'antd'; // Does not work
 
 function MyHeader(props) {
@@ -33,7 +34,8 @@ function MyHeader(props) {
     <>
       <Menu theme="dark" mode="horizontal" >
       {/* defaultSelectedKeys={[" "]} */}
-        <div className="logo" />
+      
+		<img src={logo} width="150" height="64" alt="logo" style={{float:"left", opacity: 0.98}}/>
         <Menu.Item key="1" onClick={homeLoader}>
           Home
         </Menu.Item>
