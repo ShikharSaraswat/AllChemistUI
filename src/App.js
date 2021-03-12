@@ -1,28 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Welcome from "./Components/Welcome";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import BasicLayout from './Components/BasicLayout';
-
+import PageContext from '../src/context';
 
 
 
 function App() {
 
   const [page, setPage] = React.useState(<Welcome />);
-  // const [state, dispatch] = useReducer(Reducer, initialState);
-  // setPage(<Home />);
-  // const pageContext=createContext(setPage);
+  const [flag,setFlag] = useState("Login");
+  const providerValue = {
+    page,
+    updatePage:(p)=>{
+      setPage(p)
+    },
+    flag,
+    updateFlag:(f)=>{
+      setFlag(f)
+    }
+  };
 
   return (
     <div className="App">
-      {/* <pageContext.Provider value={[
-      page,setPage
-    ]}>
+      <PageContext.Provider value={providerValue}>
+      <BasicLayout  ></BasicLayout>
+      {/* page={page} setPage={setPage} */}
+      </PageContext.Provider>
       
-      </pageContext.Provider> */}
-      <BasicLayout page={page} setPage={setPage}></BasicLayout>
     </div>
   );
 }

@@ -1,0 +1,13 @@
+input:disabled {
+  color: black;
+  background: transparent;
+}
+
+.required {
+  color: red;
+  text-decoration: underline;
+}
+
+.input-required {
+  border: 1px solid red;
+}
