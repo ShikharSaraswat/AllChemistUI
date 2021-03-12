@@ -1,4 +1,5 @@
-import React from "react";
+import React,{useContext} from "react";
+import PageContext from '../context';
 import { Menu } from "antd";
 import Login from "./Form/Login";
 import Home from "./Home/Home";
@@ -7,30 +8,29 @@ import About from "./About";
 //import Header from 'antd'; // Does not work
 
 function MyHeader(props) {
- 
-  const stateSetter = props.stateSetter;
+  const pageContextual = useContext(PageContext);
 
   function homeLoader() {
-    stateSetter(<Home stateSetter={stateSetter} />);
-  }
+    pageContextual.updatePage(<Home />);
+   }
 
   function loginLoader() {
-    
-    stateSetter(<Login />);
+    pageContextual.updatePage(<Login />);
+    pageContextual.updateFlag("Login");
   }
 
   function helpdeskLoader() {
-   
-    stateSetter(<Helpdesk />);
+   pageContextual.updatePage(<Helpdesk />);
   }
 
   function aboutLoader() {
 
-    stateSetter(<About />);
+    pageContextual.updatePage(<About />);
   }
 
   return (
     <>
+    {console.log(pageContextual.flag)}
       <Menu theme="dark" mode="horizontal" >
       {/* defaultSelectedKeys={[" "]} */}
         <div className="logo" />
@@ -44,11 +44,12 @@ function MyHeader(props) {
           About
         </Menu.Item>
         <Menu.Item key="4" onClick={loginLoader}>
-          Login
+        {pageContextual.flag}
         </Menu.Item>
       </Menu>
     </>
   );
+ 
 }
 
 export default MyHeader;
