@@ -1,0 +1,21 @@
+
+.pcm::placeholder {
+    color: #080808;
+    opacity: 1;
+}
+
+.box{
+    width: 55%;
+    height: fit-content;
+    background-color: aliceblue;
+    margin-top: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    padding-top: 40px;
+    padding-right: 115px;
+    padding-bottom: 10px;
+    padding-left: auto;
+    border: 1px solid #080808;
+    box-shadow: 0 3px 3px rgb(54, 54, 54);
+}

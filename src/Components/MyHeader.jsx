@@ -6,6 +6,9 @@ import Home from "./Home/Home";
 import Helpdesk from "./Helpdesk";
 import About from "./About";
 import logo from "./LOGO2.jpg"
+import PatientHome from "../Components/Patient/PatientHome";
+import PharmacyHome from '../Components/Pharmacy/PharmacyHome';
+import HospitalHome from '../Components/Hospital/HospitalHome';
 //import Header from 'antd'; // Does not work
 
 function MyHeader(props) {
@@ -16,8 +19,21 @@ function MyHeader(props) {
    }
 
   function loginLoader() {
-    pageContextual.updatePage(<Login />);
-    pageContextual.updateFlag("Login");
+   
+    if(pageContextual.flag==="patient"){
+      pageContextual.updatePage(<PatientHome />);
+    }
+    if(pageContextual.flag==="hospital"){
+      pageContextual.updatePage(<HospitalHome />);
+    }
+    if(pageContextual.flag==="pharmacy"){
+      pageContextual.updatePage(<PharmacyHome />);
+    }
+    else if(pageContextual.flag==="Login"){
+      
+      pageContextual.updatePage(<Login />);
+    
+    }
   }
 
   function helpdeskLoader() {

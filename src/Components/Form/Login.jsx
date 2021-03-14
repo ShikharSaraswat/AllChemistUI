@@ -53,26 +53,30 @@ function Login() {
     
     ApiService.signIn(credentials).then(res => {
         const user = res.data;
-        localStorage.setItem("user", user);
+        context.updateUser(user);
+       
         var role =user.roles[0];
+        //context.updateUser(res.data);
+       // alert(context.user);
         
         if (role ==='PATIENT') {
           context.updatePage(<PatientHome />);
-          context.updateFlag("Logout");
+          context.updateFlag("patient");
         } else if (role === "HOSPITAL") {
           alert("in hospital");
-          context.updatePage(<PatientHome />);
-          context.updateFlag("Logout");
+          context.updatePage(<HospitalHome />);
+          context.updateFlag("hospital");
        } else if (role ==="PHARMACY") {
           context.updatePage(<PharmacyHome />);
-          context.flag = "Logout";
+          context.flag = "pharmacy";
         }
       
 
     }
-    ).catch(err => {
-      context.updatePage(<ErrorPage />);
-  });
+    )
+     .catch(err => {
+       context.updatePage(<ErrorPage />);
+   });
  }
 
 //  if(flag===1){

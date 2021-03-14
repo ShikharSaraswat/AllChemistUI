@@ -12,6 +12,7 @@ function App() {
 
   const [page, setPage] = React.useState(<Welcome />);
   const [flag,setFlag] = useState("Login");
+  const [user,setUser] = useState({});
   const providerValue = {
     page,
     updatePage:(p)=>{
@@ -20,6 +21,10 @@ function App() {
     flag,
     updateFlag:(f)=>{
       setFlag(f)
+    },
+    user,
+    updateUser:(u)=>{
+      setUser(u)
     }
   };
 
