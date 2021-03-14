@@ -1,10 +1,15 @@
-import React from 'react';
-
+import React,{useContext}from 'react';
+import context from '../../context';
+import HospitalPage from './HospitalPage';
 
 function HospitalHome(){
- 
+  const userContext = useContext(context);
+  const user = userContext.user;
+  
     return(
-            <h1>Hello from Hospital</h1>
+        <div>
+            <HospitalPage user={user}/>
+        </div>   
        
     );
 }

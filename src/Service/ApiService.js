@@ -1,21 +1,34 @@
 import axios from 'axios';
 
+
 const USER_API_BASE_URL = 'http://localhost:8080/AllChemist';
 
 class ApiService {
+
+    
 
     signIn(details){
 
         return axios.post(USER_API_BASE_URL + '/signin',details);
     }
 
-    // fetchUsers() {
-    //     return axios.get(USER_API_BASE_URL);
-    // }
+    
+     fetchPatientById(id,token) {
+      return axios.get(USER_API_BASE_URL+'/patient/details/'+id, {
+       headers: {
+         Authorization: "Bearer " + token
+         }
+      });
+     }
+     
 
-    // fetchUserById(userId) {
-    //     return axios.get(USER_API_BASE_URL + '/' + userId);
-    // }
+     fetchHistory(userId,token) {
+         return axios.get(USER_API_BASE_URL + '/hospital/get_history/' + userId,{
+            headers: {
+              Authorization: "Bearer " + token
+              }
+           });
+     }
 
     // deleteUser(userId) {
     //     return axios.delete(USER_API_BASE_URL + '/' + userId);
