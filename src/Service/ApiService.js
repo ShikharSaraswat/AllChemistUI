@@ -30,6 +30,14 @@ class ApiService {
            });
      }
 
+     fetchHistoryFromPatient(userId,token) {
+        return axios.get(USER_API_BASE_URL + '/patient/history/' + userId,{
+           headers: {
+             Authorization: "Bearer " + token
+             }
+          });
+    }
+
     // deleteUser(userId) {
     //     return axios.delete(USER_API_BASE_URL + '/' + userId);
     // }

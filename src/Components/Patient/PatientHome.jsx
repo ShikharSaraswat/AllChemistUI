@@ -38,13 +38,13 @@ function PatientHome(){
     
   useEffect(() =>{
     ApiService.fetchPatientById(user.roleId,user.accessToken).then( res =>{
+
       userContext.updateUser(res.data);
-      
-     
+      alert("dfadfafasf")
      } ).catch( error =>
        console.log(error)
      )
-  },[])
+  })
     // .catch( err =>
      //  userContext.updatePage(<ErrorPage />)
     // )
@@ -69,7 +69,7 @@ function PatientHome(){
 //   "ConnectedPhysician": "k79dG9jrazd73uQet"
 // }
  
-    const patient = userContext.user;
+   
     return(
       //<div className='statebasic-nogrid patientstate'>
         
