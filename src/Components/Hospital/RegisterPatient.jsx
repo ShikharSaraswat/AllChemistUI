@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState }from 'react';
 import { Form, Input, InputNumber, Button } from 'antd';
 import './HospitalPage.css';
 import context from '../../context';
-import History from '../History';
+import History from '../PatientHistory';
 const RegisterPatient = (props) => {
     const pageContext = useContext(context);
     const layout = {

@@ -11,8 +11,10 @@ import PageContext from '../src/context';
 function App() {
 
   const [page, setPage] = React.useState(<Welcome />);
-  const [flag,setFlag] = useState("Login");
-  const [user,setUser] = useState({});
+  const [flag,setFlag] = useState("Login"); 
+  const [user,setUser] = useState({}); 
+  const [token,setToken] = useState("");
+  const [marker,setMarker] = useState(true);
   const providerValue = {
     page,
     updatePage:(p)=>{
@@ -25,6 +27,15 @@ function App() {
     user,
     updateUser:(u)=>{
       setUser(u)
+    }
+    ,
+    token,
+    updateToken:(t)=>{
+      setToken(t)
+    },
+    marker,
+    updateMarker : (m)=>{
+      setMarker(m)
     }
   };
 

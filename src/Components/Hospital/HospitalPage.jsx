@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState }from 'react';
 import { Form, Input,  Button } from 'antd';
 import './HospitalPage.css';
 import context from '../../context';
-import History from '../History';
+import HospitalHistory from '../HospitalHistory';
 import RegisterPatient from './RegisterPatient';
 const HospitalPage = (props) => {
     const pageContext = useContext(context);
@@ -18,8 +18,11 @@ const HospitalPage = (props) => {
         function addPatients(){
             pageContext.updatePage(<RegisterPatient />);
         }
+        function addPrescription(){
+          pageContext.updatePage(<RegisterPatient />);
+      }
         function viewHistory() {
-         pageContext.updatePage(<History />);
+         pageContext.updatePage(<HospitalHistory />);
         }
       
         return (
@@ -54,6 +57,9 @@ const HospitalPage = (props) => {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <Button type="primary" onClick={viewHistory}>
                 View Prescription History
+              </Button>
+              <Button type="primary" onClick={addPrescription}>
+                Add Prescription
               </Button>
             </Form.Item>
           </Form>
