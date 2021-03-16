@@ -51,11 +51,6 @@ const PatientHome2 = (props) => {
     
   }
 
-  
-
-  
-
-
   return (
     <div className='box' >
       <Form {...layout} name="nest-messages"  >

@@ -52,6 +52,7 @@ function MyHeader(props) {
       {/* defaultSelectedKeys={[" "]} */}
       
 		<img src={logo} width="150" height="64" alt="logo" style={{float:"left", opacity: 0.98}}/>
+       <Menu.Item/> 
         <Menu.Item key="1" onClick={homeLoader}>
           Home
         </Menu.Item>

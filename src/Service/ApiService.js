@@ -22,13 +22,14 @@ class ApiService {
      }
      
 
-     fetchHistory(userId,token) {
-         return axios.get(USER_API_BASE_URL + '/hospital/get_history/' + userId, {
+     fetchHistoryFromPatient(userId,token) {
+         return axios.get(USER_API_BASE_URL + '/hospital/history/' + userId, {
             headers: {
               Authorization: "Bearer " + token
               }
            });
      }
+     
 
      updatePatient(patient,token) {
         return axios.put(USER_API_BASE_URL + '/update_details',patient,{
