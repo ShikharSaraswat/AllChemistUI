@@ -7,15 +7,46 @@ import ErrorPage from '../ErrorPage';
 import axios from 'axios';
 import useAxios from "axios-hooks";
 import PatientHome2 from './PatienHome2';
-
+import { Form, Input, InputNumber, Button } from 'antd';
+import PatientHistory from '../PatientHistory';
 
 function PatientHome(){
   const userContext = useContext(context);
   const USER_API_BASE_URL = 'http://localhost:8080/AllChemist/patient/details/';
   const user = userContext.user;
-  console.log(user);
+  const pageContext = useContext(context);
+  const [patient,setPatient] = userContext.user;
   
 
+  function viewHistory() {
+ 
+    pageContext.updatePage(<PatientHistory  />);
+  }
+  function updatePatient(e) {
+    const value = e.target.value;
+    setPatient({
+      ...patient,[e.target.name] : value
+    });
+    
+
+    console.log(patient);
+    
+    
+
+  }
+  const layout = {
+    labelCol: {
+      span: 8,
+    },
+    wrapperCol: {
+      span: 16,
+    },
+  };
+
+  function changeHandler() {
+    
+    
+  }
   // axios.interceptors.response.use(
   //   (response) => userContext.updateUser(response.data),
   //   async (error) => {
@@ -47,8 +78,9 @@ function PatientHome(){
       
      } ).catch( error =>
        console.log(error)
-     )
-  })
+     );
+
+     
     // .catch( err =>
      //  userContext.updatePage(<ErrorPage />)
     // )
@@ -80,7 +112,60 @@ function PatientHome(){
       /* <PatientProfileForm  className='gr-2-2'
       patient={userContext.user}/>*/
       <div>
-      <PatientHome2 patient={userContext.user} />
+      <div className='box' >
+      <Form {...layout} name="nest-messages"  >
+        <Form.Item name='Username' label="username"  >
+          <Input className='pcm' name='name' onChange={changeHandler} placeholder={patient.name} value={patient.name} />
+        </Form.Item>
+        <Form.Item
+          name='Email'
+          label="Email"
+          value={patient.email}
+          rules={[
+            {
+              type: 'email',
+            },
+          ]}
+        >
+          <Input className='pcm' name='email' onChange={changeHandler} disabled placeholder={patient.email} value={patient.email} />
+        </Form.Item>
+        <Form.Item
+          name='Date of Birth'
+          label="DOB"
+          value={patient.dateOfBirth}
+          rules={[
+            {
+              type: 'date',
+              min: 0,
+              max: 99,
+            },
+          ]}
+        >
+          <Input type='text' name='dateOfBirth' disabled className='pcm' onChange={changeHandler} value={patient.dateOfBirth} placeholder={patient.dateOfBirth} />
+        </Form.Item>
+        <Form.Item name='address' label="address" >
+          <Input.TextArea className='pcm' name='address' onChange={changeHandler} value={patient.address} placeholder={patient.address} />
+        </Form.Item>
+        <Form.Item name='weight' label="Weight" >
+          <Input className='pcm' name='weight' onChange={changeHandler} value={patient.weight} placeholder={patient.weight} />
+        </Form.Item>
+        <Form.Item name='Height' label="Height" >
+          <Input className='pcm' name='height' onChange={changeHandler} type='text' value={patient.height} placeholder={patient.height} />
+        </Form.Item>
+        <Form.Item name='bloodGroup' label="BloodGroup" >
+          <Input className='pcm' name='BG' onChange={changeHandler} disabled value={patient.bloodGroup} placeholder={patient.bloodGroup} />
+        </Form.Item>
+        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+          <Button type="primary" onClick={updatePatient}>
+            Update Details
+              </Button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <Button type="primary" onClick={viewHistory}>
+            View Prescription History
+              </Button>
+        </Form.Item>
+      </Form>
+    </div>
       </div>
     );
 }

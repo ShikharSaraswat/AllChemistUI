@@ -31,7 +31,7 @@ class ApiService {
      }
 
      updatePatient(patient,token) {
-        return axios.put(USER_API_BASE_URL + '/update_details',patient,{
+        return axios.put(USER_API_BASE_URL + '/patient/update_details',patient,{
             headers: {
               Authorization: "Bearer " + token
               }

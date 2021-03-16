@@ -7,7 +7,8 @@ import ApiService from '../../Service/ApiService';
 
 const PatientHome2 = (props) => {
   const pageContext = useContext(context);
-  const [patient,setPatient] = useState(pageContext.user);
+  const [patient,setPatient] = useState(props.patient);
+  console.log(patient)
   //   "name" : "",
   // "email": "teja@gmail.com",
   // "height":"5.7",
@@ -35,15 +36,11 @@ const PatientHome2 = (props) => {
     setPatient({
       ...patient,[e.target.name] : value
     });
+    
 
     console.log(patient);
-
-    ApiService.updatePatient(patient,pageContext.token).then(res =>
-      alert("Patient Added")
-    ).catch((error) =>{
-      console.log(error);
-    }
-    );
+    
+    
 
   }
   function changeHandler() {
