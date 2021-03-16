@@ -3,7 +3,7 @@ import React from "react";
 import ControlledCarousel from "./ControlledCarousel";
 // import Login from "../Form/Login";
 
-function Home(props) {
+const Home = (props) => {
  
   return (
     <>

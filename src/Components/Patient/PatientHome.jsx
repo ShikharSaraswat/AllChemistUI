@@ -4,31 +4,27 @@ import 'tachyons';
 import context from '../../context';
 import ApiService from '../../Service/ApiService';
 import ErrorPage from '../ErrorPage';
-import axios from 'axios';
-import useAxios from "axios-hooks";
-import PatientHome2 from './PatienHome2';
 import { Form, Input, InputNumber, Button } from 'antd';
 import PatientHistory from '../PatientHistory';
 
-function PatientHome(){
+const PatientHome = () => {
   const userContext = useContext(context);
   const USER_API_BASE_URL = 'http://localhost:8080/AllChemist/patient/details/';
   const user = userContext.user;
-  const pageContext = useContext(context);
-  const [patient,setPatient] = userContext.user;
+  const [patient,setPatient] = useState(userContext.user);
+  //console.log(user);
+  const marker = userContext.marker
+  const [flag, setFlag] = useState(false);
   
 
   function viewHistory() {
  
-    pageContext.updatePage(<PatientHistory  />);
+    userContext.updatePage(<PatientHistory  />);
   }
-  function updatePatient(e) {
-    const value = e.target.value;
-    setPatient({
-      ...patient,[e.target.name] : value
-    });
+  function updatePatient() {
     
-
+    
+    setFlag(true)
     console.log(patient);
     
     
@@ -43,9 +39,11 @@ function PatientHome(){
     },
   };
 
-  function changeHandler() {
-    
-    
+  function changeHandler(e) {
+    const value = e.target.value;
+    setPatient({
+      ...patient,[e.target.name] : value
+    });
   }
   // axios.interceptors.response.use(
   //   (response) => userContext.updateUser(response.data),
@@ -69,18 +67,32 @@ function PatientHome(){
     
   useEffect(() =>{
     
-
+    if(marker){
     ApiService.fetchPatientById(user.roleId,user.accessToken).then( res =>{
-
-      userContext.updateUser(res.data);
-      userContext.updateMarker(false);
-      console.log(userContext.user)
       
-     } ).catch( error =>
-       console.log(error)
-     );
+      userContext.updateUser(res.data)
+      console.log("API call from patient home")
+      setPatient(res.data)
+      userContext.updateMarker(false)
+      
+     } ).catch( e =>
+      userContext.updatePage(< ErrorPage error={e} />)
+     )}
+    
+     if(flag){
+       console.log(patient);
+      ApiService.updatePatient(patient,userContext.token).then(res =>
+        alert("Patient Added"),
+        //setMarker(true)
+        //setFlag(false)
+      ).catch((e) =>{
+        userContext.updatePage(< ErrorPage error={e} />)
+      }
+      );
+    }
+    
+    }, [marker,flag])
 
-     
     // .catch( err =>
      //  userContext.updatePage(<ErrorPage />)
     // )

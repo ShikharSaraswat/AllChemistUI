@@ -1,10 +1,13 @@
-import React from 'react';
-
-
-function PharmacyHome(){
-
+import React ,{useContext}from 'react';
+import context from '../../context';
+import PharmacyPage from './PharmacyPage';
+const PharmacyHome = () => {
+    const userContext = useContext(context);
+    const user = userContext.user;
     return(
-       <h1>Hello from pharmacy home!</h1> 
+        <div>
+            <PharmacyPage user={user}/>
+        </div>
     );
 }
 

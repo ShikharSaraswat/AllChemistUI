@@ -1,8 +1,11 @@
 import React from "react";
 
-function ErrorPage(){
+const ErrorPage = (props) => {
     return (
-        <h1>Invalid Credentials...</h1>
+        <>
+        <h1>Error on page</h1>
+        {props.error}
+        </>
     );
 }
 
