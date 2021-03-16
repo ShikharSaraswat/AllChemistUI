@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './Login.css';
@@ -41,7 +41,7 @@ function Login() {
     e.preventDefault();
 
 
-
+    if(context.marker){
     ApiService.signIn(credentials).then(res => {
       const user = res.data;
       context.updateUser(user);
@@ -68,6 +68,7 @@ function Login() {
         context.updatePage(<ErrorPage />);
       });
   }
+}
 
   //  if(flag===1){//    navigate('/p');// }else if(flag ===2){// }else if(flag ===3){// }// useRedirect('/p', '/patient');
   // const routeResult = useRoutes(routes);

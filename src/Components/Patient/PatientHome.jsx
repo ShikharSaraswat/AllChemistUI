@@ -37,10 +37,14 @@ function PatientHome(){
   // if (error) return <p>Error!</p>;
     
   useEffect(() =>{
+    
+
     ApiService.fetchPatientById(user.roleId,user.accessToken).then( res =>{
 
       userContext.updateUser(res.data);
-      alert("dfadfafasf")
+      userContext.updateMarker(false);
+      console.log(userContext.user)
+      
      } ).catch( error =>
        console.log(error)
      )

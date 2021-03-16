@@ -18,6 +18,9 @@ const HospitalPage = (props) => {
         function addPatients(){
             pageContext.updatePage(<RegisterPatient />);
         }
+        function addPrescription(){
+          pageContext.updatePage(<RegisterPatient />);
+      }
         function viewHistory() {
          pageContext.updatePage(<HospitalHistory />);
         }
@@ -54,6 +57,9 @@ const HospitalPage = (props) => {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <Button type="primary" onClick={viewHistory}>
                 View Prescription History
+              </Button>
+              <Button type="primary" onClick={addPrescription}>
+                Add Prescription
               </Button>
             </Form.Item>
           </Form>
