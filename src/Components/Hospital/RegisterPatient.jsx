@@ -1,81 +1,146 @@
-import React, { useContext, useEffect, useState }from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Form, Input, InputNumber, Button } from 'antd';
 import './HospitalPage.css';
 import context from '../../context';
-import History from '../PatientHistory';
+import ApiService from '../../Service/ApiService';
+import UploadImages from '../Image/UploadImage';
+
+
 const RegisterPatient = (props) => {
-    const pageContext = useContext(context);
-    const layout = {
-        labelCol: {
-          span: 8,
-        },
-        wrapperCol: {
-          span: 16,
-        },
-      };
-      /* eslint-disable no-template-curly-in-string */
-       function viewHistory() {
-         pageContext.updatePage(<History />);
-      }
-      
-      
-        return (
-            
-            <div className='box' >
-                <h1 style={{alignContent : 'center'}}> Registration Page </h1>
-          <Form {...layout} name="nest-messages"  >
-            <Form.Item name='Username' label="username" value >
-              <Input className='pcm'   />
-            </Form.Item>
-            <Form.Item name='password' label="Password" value>
-              <Input type='password' className='pcm'  />
-            </Form.Item>
-            <Form.Item
-              name='Email'
-              label="Email"
-              rules={[
-                {
-                  type: 'email',
-                },
-              ]}
-            >
-              <Input className='pcm'  />
-            </Form.Item>
-            <Form.Item
-              name='Date of Birth'
-              label="DOB"
-              rules={[
-                {
-                  type: 'date',
-                  min: 0,
-                  max: 99,
-                },
-              ]}
-            >
-              <Input type='text'  className='pcm'    />
-            </Form.Item>
-            <Form.Item name='address' label="address" >
-              <Input.TextArea className='pcm'   />
-            </Form.Item>
-            <Form.Item name='weight' label="Weight" >
-              <Input className='pcm'   />
-            </Form.Item>
-            <Form.Item name='Height' label="Height" >
-              <Input className='pcm' type='text'   />
-            </Form.Item>
-            <Form.Item name='BloodGroup' label="BloodGroup" >
-              <Input className='pcm'   />
-            </Form.Item>
-            
-            <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-              <Button type="primary" onClick>
-                Register
-              </Button>
-            </Form.Item>
-          </Form>
+  const pageContext = useContext(context);
+  
+  const [presc, setPresc] = useState({
+    "id": "",
+    "patientId": " ",
+    "date": new Date().toISOString().slice(0,10),
+    "prescriptionFile": [],
+    "status": 1
+  });
+
+  const layout = {
+    labelCol: {
+      span: 8,
+    },
+    wrapperCol: {
+      span: 16,
+    },
+  };
+
+  function savePrescription() {
+    window.print();
+  }
+
+  function addPrescription(){
+    console.log(presc);
+  }
+  
+  const changeHandler = (e) => {
+    const value = e.target.value
+    const name = e.target.name
+    setPresc({
+        ...presc,
+        [name]: value
+    });
+    console.log(presc);
+  };
+
+  /*const fileHandler = (e) => {
+    const reader = new FileReader()
+    const value = reader.readAsBinaryString(e.target.files[0])
+    const name = e.target.name
+    setPresc({
+        ...presc,
+        [name]: value
+    });
+    console.log(presc);
+  };*/
+
+  ApiService.createPrescription(presc, pageContext.token).then(res => 
+    alert(presc)
+    ).catch((error) =>{
+        console.log(error);
+    });
+
+  return (
+
+  <div className='box' >
+    <h1 style={{ alignContent: 'center' }}> Prescription </h1>
+    <Form {...layout} name="nest-messages"  >
+      <Form.Item name='Username' label="Name">
+        <Input className='pcm' />
+      </Form.Item>
+      <Form.Item  label="ID" >
+        <Input type='text' name='patientId' className='pcm' value = {presc.patientId} onChange={changeHandler} />
+      </Form.Item>
+      <Form.Item
+        name='Email'
+        label="Email"
+        rules={[
+          {
+            type: 'email',
+          },
+        ]}
+      >
+        <Input className='pcm' />
+      </Form.Item>
+      <Form.Item
+        name='age'
+        label="Age"
+      >
+        <Input type='text' className='pcm' />
+      </Form.Item>
+      <Form.Item name='BloodGroup' label="BloodGroup" >
+        <select className='pcm'>
+          <option value="A_POSITIVE" defaultValue>A+</option>
+          <option value="A_NEGATIVE">A-</option>
+          <option value="B_POSITIVE">B+</option>
+          <option value="B_NEGATIVE">B-</option>
+          <option value="AB_POSITIVE">AB+</option>
+          <option value="AB_NEGATIVE">AB-</option>
+          <option value="O_POSITIVE">O+</option>
+          <option value="O_NEGATIVE">O-</option>
+        </select>
+      </Form.Item>
+      <Form.Item name='description' label="Description" >
+        <Input.TextArea className='pcm' />
+      </Form.Item>
+      <Form.Item name='bloodPressure' label="BP" >
+        <Input className='pcm' />
+      </Form.Item>
+      <Form.Item name='prescription' label="Prescription" >
+        <Input.TextArea className='pcm' />
+      </Form.Item>
+      <Form.Item  label="Prescription File" >
+        <div className="row">
+          <div className="col-8">
+            <label className="btn btn-default p-0">
+              <input type="file" name='prescriptionFile' accept="image/*" />
+            </label>
           </div>
-        );
-      };
+
+          <div className="col-4">
+            <button
+              className="btn btn-success btn-sm"
+              
+            >
+              Upload
+            </button>
+          </div>
+        </div>
+      </Form.Item>
+      <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+        <Button type="primary" onClick = {savePrescription}>
+          Save
+              </Button>
+              &nbsp;&nbsp;&nbsp;
+              <Button type="primary" onClick = {addPrescription}>
+          Add Prescription
+              </Button>
+      </Form.Item>
+    </Form>
+  </div>
+  );
+};
 
 
 

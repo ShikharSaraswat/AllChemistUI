@@ -8,6 +8,8 @@ import ApiService from '../../Service/ApiService';
 const PatientHome2 = (props) => {
   const pageContext = useContext(context);
   const [patient,setPatient] = useState(pageContext.user);
+  const [marker, setMarker] = useState(false);
+
   //   "name" : "",
   // "email": "teja@gmail.com",
   // "height":"5.7",
@@ -35,17 +37,22 @@ const PatientHome2 = (props) => {
     setPatient({
       ...patient,[e.target.name] : value
     });
+    setMarker(true)
 
     console.log(patient);
+  }
 
+  useEffect(()=>{
+    if(marker){
     ApiService.updatePatient(patient,pageContext.token).then(res =>
-      alert("Patient Added")
+      alert("Patient Added"),
+      setMarker(false)
     ).catch((error) =>{
       console.log(error);
     }
     );
+  }}, [marker])
 
-  }
   function changeHandler() {
     
     

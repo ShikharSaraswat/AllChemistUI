@@ -11,9 +11,9 @@ import PharmacyHome from "../Pharmacy/PharmacyHome";
 
 
 
-function Login() {
+const Login = () => {
   const context = useContext(PageContext);
-
+  const [marker, setMarker] = useState(false);
   //const [routeState,setRoutes] = useState(" ");
 
   const [credentials, setCredentials] = useState({
@@ -36,38 +36,41 @@ function Login() {
     setCredentials(cred);
   }
 
+  useEffect(()=>{
+    if(marker){
+      ApiService.signIn(credentials).then(res => {
+        const user = res.data;
+        context.updateUser(user);
+        alert(user.accessToken);
+        context.updateToken(user.accessToken);
+        setMarker(false)
+        var role = user.roles[0];
+        //context.updateUser(res.data);// alert(context.user);
+  
+        if (role === 'PATIENT') {
+          context.updatePage(<PatientHome />);
+          context.updateFlag("patient");
+        } else if (role === "HOSPITAL") {
+          alert("in hospital");
+          context.updatePage(<HospitalHome />);
+          context.updateFlag("hospital");
+        } else if (role === "PHARMACY") {
+          context.updatePage(<PharmacyHome />);
+          context.flag = "pharmacy";
+        }
+      }
+      )
+        .catch(err => {
+          context.updatePage(<ErrorPage />);
+        });
+
+    }
+  }, [marker])
+
 
   function signIn(e) {
     e.preventDefault();
-
-
-    if(context.marker){
-    ApiService.signIn(credentials).then(res => {
-      const user = res.data;
-      context.updateUser(user);
-      alert(user.accessToken);
-      context.updateToken(user.accessToken);
-
-      var role = user.roles[0];
-      //context.updateUser(res.data);// alert(context.user);
-
-      if (role === 'PATIENT') {
-        context.updatePage(<PatientHome />);
-        context.updateFlag("patient");
-      } else if (role === "HOSPITAL") {
-        alert("in hospital");
-        context.updatePage(<HospitalHome />);
-        context.updateFlag("hospital");
-      } else if (role === "PHARMACY") {
-        context.updatePage(<PharmacyHome />);
-        context.flag = "pharmacy";
-      }
-    }
-    )
-      .catch(err => {
-        context.updatePage(<ErrorPage />);
-      });
-  }
+    setMarker(true);
 }
 
   //  if(flag===1){//    navigate('/p');// }else if(flag ===2){// }else if(flag ===3){// }// useRedirect('/p', '/patient');

@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function PharmacyHome(){
+const PharmacyHome = () => {
 
     return(
        <h1>Hello from pharmacy home!</h1> 

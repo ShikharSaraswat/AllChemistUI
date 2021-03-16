@@ -4,6 +4,8 @@ import './HospitalPage.css';
 import context from '../../context';
 import HospitalHistory from '../HospitalHistory';
 import RegisterPatient from './RegisterPatient';
+
+
 const HospitalPage = (props) => {
     const pageContext = useContext(context);
         const layout = {

@@ -9,11 +9,12 @@ import useAxios from "axios-hooks";
 import PatientHome2 from './PatienHome2';
 
 
-function PatientHome(){
+const PatientHome = () => {
   const userContext = useContext(context);
   const USER_API_BASE_URL = 'http://localhost:8080/AllChemist/patient/details/';
   const user = userContext.user;
   console.log(user);
+  const [marker, setMarker] = useState(true);
   
 
   // axios.interceptors.response.use(
@@ -38,17 +39,17 @@ function PatientHome(){
     
   useEffect(() =>{
     
-
+    if(marker){
     ApiService.fetchPatientById(user.roleId,user.accessToken).then( res =>{
-
-      userContext.updateUser(res.data);
-      userContext.updateMarker(false);
+      //alert("1");
+      userContext.updateUser(res.data)
+      //userContext.updateMarker(false)
       console.log(userContext.user)
-      
+      setMarker(false)
      } ).catch( error =>
        console.log(error)
-     )
-  })
+     )}}, [marker])
+
     // .catch( err =>
      //  userContext.updatePage(<ErrorPage />)
     // )
