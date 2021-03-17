@@ -12,6 +12,7 @@ function ControlledCarousel() {
     };
   
     return (
+      
       <div className="carousel">
       <Carousel activeIndex={index} onSelect={handleSelect}>
         <Carousel.Item>
