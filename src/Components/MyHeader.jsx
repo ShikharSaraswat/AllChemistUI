@@ -9,6 +9,7 @@ import logo from "./LOGO2.jpg"
 import PatientHome from "../Components/Patient/PatientHome";
 import PharmacyHome from '../Components/Pharmacy/PharmacyHome';
 import HospitalHome from '../Components/Hospital/HospitalHome';
+import AdminPage from './Admin/AdminPage';
 //import Header from 'antd'; // Does not work
 
 const MyHeader = (props) => {
@@ -28,6 +29,10 @@ const MyHeader = (props) => {
     }
     if(pageContextual.flag==="pharmacy"){
       pageContextual.updatePage(<PharmacyHome />);
+    }
+    if(pageContextual.flag==="admin"){
+      alert(pageContextual.flag);
+      pageContextual.updatePage(<AdminPage />);
     }
     else if(pageContextual.flag==="Login"){
       

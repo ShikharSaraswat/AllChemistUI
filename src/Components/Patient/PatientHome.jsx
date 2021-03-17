@@ -23,10 +23,8 @@ const PatientHome = () => {
   }
   function updatePatient() {
     
-    
     setFlag(true)
     console.log(patient);
-    
     
 
   }
@@ -84,7 +82,7 @@ const PatientHome = () => {
       ApiService.updatePatient(patient,userContext.token).then(res =>
         alert("Patient Added"),
         //setMarker(true)
-        //setFlag(false)
+        setFlag(false)
       ).catch((e) =>{
         userContext.updatePage(< ErrorPage error={e} />)
       }

@@ -8,6 +8,7 @@ import HospitalHome from "../Hospital/HospitalHome";
 import ErrorPage from "../ErrorPage";
 import PageContext from '../../context';
 import PharmacyHome from "../Pharmacy/PharmacyHome";
+import AdminPage from "../Admin/AdminPage";
 
 
 
@@ -57,7 +58,10 @@ const Login = () => {
         } else if (role === "PHARMACY") {
           context.updatePage(<PharmacyHome />);
           context.updateFlag("pharmacy");
-        }
+        } else if (role === "ADMIN") {
+          context.updatePage(<AdminPage />);
+          context.updateFlag("admin");
+        } 
       }
       )
         .catch(err => {

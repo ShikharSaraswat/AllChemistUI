@@ -75,7 +75,25 @@ class ApiService {
            Authorization: "Bearer " + token
            }
         });
-  }
+      }
+      registerHospital(hospital,token) {
+         console.log("inside api service call "+token+hospital);
+         return axios.post(USER_API_BASE_URL + '/admin/register_hospital', hospital, {
+            headers: {
+               Authorization: "Bearer" + token
+            }
+         });
+      }
+
+      registerPharmacy(pharmacy,token) {
+         console.log("inside api service call"+ token + " ..." + JSON.stringify(pharmacy));
+         return axios.post(USER_API_BASE_URL + '/admin/register_pharmacy/' , pharmacy ,{
+            headers: {
+               Authorization: "Bearer" + token
+            }
+         });
+      }
+  
 
 }
 
