@@ -22,14 +22,13 @@ class ApiService {
      }
      
 
-     fetchHistoryFromPatient(userId,token) {
-         return axios.get(USER_API_BASE_URL + '/hospital/history/' + userId, {
+     fetchHistory(userId,token) {
+         return axios.get(USER_API_BASE_URL + '/hospital/get_history/' + userId, {
             headers: {
               Authorization: "Bearer " + token
               }
            });
      }
-     
 
      updatePatient(patient,token) {
         return axios.put(USER_API_BASE_URL + '/update_details',patient,{
@@ -38,6 +37,13 @@ class ApiService {
               }
            });
      }
+     fetchHistoryFromPatient(userId,token) {
+      return axios.get(USER_API_BASE_URL + '/hospital/history/' + userId, {
+         headers: {
+           Authorization: "Bearer " + token
+           }
+        });
+  }
 
     // addUser(user) {
     //     return axios.post(""+USER_API_BASE_URL, user);
