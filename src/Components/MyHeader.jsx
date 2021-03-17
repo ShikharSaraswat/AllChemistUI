@@ -11,7 +11,7 @@ import PharmacyHome from '../Components/Pharmacy/PharmacyHome';
 import HospitalHome from '../Components/Hospital/HospitalHome';
 //import Header from 'antd'; // Does not work
 
-function MyHeader(props) {
+const MyHeader = (props) => {
   const pageContextual = useContext(PageContext);
 
   function homeLoader() {

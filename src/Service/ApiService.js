@@ -31,7 +31,7 @@ class ApiService {
      }
 
      updatePatient(patient,token) {
-        return axios.put(USER_API_BASE_URL + '/update_details',patient,{
+        return axios.put(USER_API_BASE_URL + '/patient/update_details/',patient,{
             headers: {
               Authorization: "Bearer " + token
               }
@@ -45,13 +45,37 @@ class ApiService {
         });
   }
 
-    // addUser(user) {
-    //     return axios.post(""+USER_API_BASE_URL, user);
-    // }
+     fetchHistoryFromPatient(userId,token) {
+      return axios.get(USER_API_BASE_URL + '/patient/history/' + userId, {
+         headers: {
+           Authorization: "Bearer " + token
+           }
+        });
+  }
 
-    // editUser(user) {
-    //     return axios.put(USER_API_BASE_URL + '/' + user.id, user);
-    // }
+     createPrescription(prescription,token){
+        return axios.post(USER_API_BASE_URL + '/hospital/create', prescription, {
+         headers: {
+           Authorization: "Bearer " + token
+           }
+        });
+     }
+
+     addPatient(patient,token) {
+      return axios.post(USER_API_BASE_URL + '/hospital/create/patient', patient, {
+        headers: {
+          Authorization: "Bearer " + token
+          }
+       });
+     }
+
+     viewPrescription(userId,token) {
+      return axios.get(USER_API_BASE_URL + '/pharmacy/view_prescription/' + userId, {
+         headers: {
+           Authorization: "Bearer " + token
+           }
+        });
+  }
 
 }
 

@@ -7,7 +7,7 @@ import { Layout, Breadcrumb } from "antd";
 const { Header, Content, Footer } = Layout;
 
 
-function BasicLayout(props) {
+const BasicLayout = (props) => {
    const context = useContext(PageContext);
   
   return (
