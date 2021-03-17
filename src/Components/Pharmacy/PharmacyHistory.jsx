@@ -8,22 +8,35 @@ import { List, Avatar } from 'antd';
 
 
 const PharmacyHistory = () => {
+
+  const [flag,setFlag] = useState(false);
   const userContext = useContext(context);
   const [id, setId] = useState("");
-  const [history, setHistory] = useState([]);
+  const  [history, setHistory] = useState({});
   
-  
+  useEffect(()=>{
 
-  function getHistory() {
-      alert(id)
-      alert(userContext.token)
+    if(flag){
     ApiService.viewPrescription(id,userContext.token).then(res => {
-        console.log(res.data)
-      setHistory(res.data)
+        alert("Inside call")
+        alert(JSON.stringify(res.data))
+       setHistory(res.data)
+       console.log(history)
     }).catch(error =>
       console.log(error)
     )
+    }
+
+
+  },[flag])
+
+  const getHistory=()=> {
+      alert(id)
+      setFlag(true);  
+
   }
+
+  
 
 
 
@@ -43,11 +56,11 @@ const PharmacyHistory = () => {
   else {
     return (
       <>
-        <div>
+        { <div>
           <input type='text' onChange={changeHandler} />
           <button onClick={getHistory}> Fetch Prescription </button>
         </div>
-        <div>
+       /* <div>
           <List
             itemLayout="horizontal"
             dataSource={history}
@@ -62,7 +75,7 @@ const PharmacyHistory = () => {
               </List.Item>
             )}
           />
-        </div>
+        </div> */}
 
       </>
     )
