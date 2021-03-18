@@ -17,6 +17,7 @@ const Login = () => {
   const [marker, setMarker] = useState(false);
   //const [routeState,setRoutes] = useState(" ");
 
+  
   const [credentials, setCredentials] = useState({
     username: "",
     password: ""
@@ -39,6 +40,7 @@ const Login = () => {
 
   useEffect(()=>{
     if(marker){
+      // alert(context.token);
       ApiService.signIn(credentials).then(res => {
         const user = res.data;
         context.updateUser(user);
@@ -61,7 +63,7 @@ const Login = () => {
         } else if (role === "ADMIN") {
           context.updatePage(<AdminPage />);
           context.updateFlag("admin");
-        } 
+        }
       }
       )
         .catch(err => {

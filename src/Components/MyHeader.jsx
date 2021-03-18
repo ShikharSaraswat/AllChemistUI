@@ -5,7 +5,7 @@ import Login from "./Form/Login";
 import Home from "./Home/Home";
 import Helpdesk from "./Helpdesk";
 import About from "./About";
-import logo from "./LOGO2.jpg"
+import logo from "./LOGO.jpg"
 import PatientHome from "../Components/Patient/PatientHome";
 import PharmacyHome from '../Components/Pharmacy/PharmacyHome';
 import HospitalHome from '../Components/Hospital/HospitalHome';
@@ -15,11 +15,11 @@ import AdminPage from './Admin/AdminPage';
 const MyHeader = (props) => {
   const pageContextual = useContext(PageContext);
 
-  function homeLoader() {
+  const homeLoader = () => {
     pageContextual.updatePage(<Home />);
    }
 
-  function loginLoader() {
+  const loginLoader = () => {
    
     if(pageContextual.flag==="patient"){
       pageContextual.updatePage(<PatientHome />);
@@ -35,13 +35,11 @@ const MyHeader = (props) => {
       pageContextual.updatePage(<AdminPage />);
     }
     else if(pageContextual.flag==="Login"){
-      
-      pageContextual.updatePage(<Login />);
-    
+      pageContextual.updatePage(<Login />); 
     }
   }
 
-  function helpdeskLoader() {
+  const helpdeskLoader = () => {
    pageContextual.updatePage(<Helpdesk />);
   }
 

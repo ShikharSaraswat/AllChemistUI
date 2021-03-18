@@ -30,8 +30,6 @@ const HospitalRegistration = () => {
 
   useEffect(() => {
     if(check){
-      alert(JSON.stringify(hospital));
-      alert(pageContext.token);
       ApiService.registerHospital(hospital,pageContext.token)
       .then(res => console.log(res.data))
       .catch( error => console.log(error))
@@ -48,7 +46,7 @@ const HospitalRegistration = () => {
   
   return (
   <div className="box">
-     <h1 style={{ alignContent: 'center' }}> Register Pharmacy </h1>
+     <h1 style={{ alignContent: 'center' }}> Register Hospital </h1>
       <Form {...layout} name="nest-messages"  >
      
         <Form.Item name='username' label="username"  >

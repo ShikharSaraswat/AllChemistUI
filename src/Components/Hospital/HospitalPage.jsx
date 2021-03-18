@@ -5,9 +5,13 @@ import context from '../../context';
 import HospitalHistory from '../HospitalHistory';
 import RegisterPatient from './RegisterPatient';
 import AddPatient from '../Patient/AddPatient';
+import PageContext from '../../context';
+import Login from "../Form/Login";
 
 const HospitalPage = (props) => {
+  const userContext = useContext(context);
     const pageContext = useContext(context);
+    const pageContextual = useContext(PageContext);
         const layout = {
         labelCol: {
           span: 8,
@@ -25,6 +29,13 @@ const HospitalPage = (props) => {
       }
         function viewHistory() {
          pageContext.updatePage(<HospitalHistory />);
+        }
+
+        const logout = () => {
+    
+          userContext.updatePage(<Login />);
+          pageContextual.updateFlag("Login");
+        
         }
       
         return (
@@ -48,22 +59,23 @@ const HospitalPage = (props) => {
             >
               <Input className='pcm' disabled placeholder={props.user.email} value={props.user.email}/>
             </Form.Item>
-           
-           
-            
-            
-            
             <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-              <Button type="primary" onClick={addPatients}>
+            
+              <Button className="buttonCard" type="primary" onClick={addPatients}>
                 Add Patients
               </Button>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <Button type="primary" onClick={viewHistory}>
-                View Prescription History
+             
+              <Button className="buttonCard" type="primary" onClick={viewHistory}>
+                View Prescription
               </Button>
-              <Button type="primary" onClick={addPrescription}>
+              <Button className="buttonCard" type="primary" onClick={addPrescription}>
                 Add Prescription
               </Button>
+              <br/>
+              <Button className="buttonCard" type="primary" onClick={logout}>
+                 Log Out
+              </Button>
+            
             </Form.Item>
           </Form>
           </div>

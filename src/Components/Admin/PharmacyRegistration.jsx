@@ -37,11 +37,15 @@ const PharmacyRegistration = () => {
 
     useEffect(() => {
         if (marker) {
-            ApiService.registerPharmacy(pharmacy, pageContext.token).then(res => {
+            alert("in if")
+            ApiService.registerPharmacy(pharmacy, pageContext.token)
+            .then(res => {
+                alert("in then")
                 setMarker(false);
                 console.log(res.data)
             }
             ).catch(error => {
+                alert("in catch")
                 setMarker(false);
                 console.log(error)
             }
