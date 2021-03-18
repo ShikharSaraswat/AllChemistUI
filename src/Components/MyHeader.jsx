@@ -9,24 +9,29 @@ import logo from "./LOGO2.jpg"
 import PatientHome from "../Components/Patient/PatientHome";
 import PharmacyHome from '../Components/Pharmacy/PharmacyHome';
 import HospitalHome from '../Components/Hospital/HospitalHome';
+import { useState } from "react";
 //import Header from 'antd'; // Does not work
 
 const MyHeader = (props) => {
   const pageContextual = useContext(PageContext);
-
+  // const [select,setSelect] = useState();
+  
   function homeLoader() {
-    pageContextual.updatePage(<Home />);
+   pageContextual.updatePage(<Home />);
    }
 
   function loginLoader() {
-   
+    
     if(pageContextual.flag==="patient"){
+  
       pageContextual.updatePage(<PatientHome />);
     }
     if(pageContextual.flag==="hospital"){
+      
       pageContextual.updatePage(<HospitalHome />);
     }
     if(pageContextual.flag==="pharmacy"){
+     
       pageContextual.updatePage(<PharmacyHome />);
     }
     else if(pageContextual.flag==="Login"){
@@ -36,20 +41,20 @@ const MyHeader = (props) => {
     }
   }
 
-  function helpdeskLoader() {
+  function helpdeskLoader() { 
    pageContextual.updatePage(<Helpdesk />);
   }
 
   function aboutLoader() {
-
     pageContextual.updatePage(<About />);
   }
 
   return (
     <>
     {console.log(pageContextual.flag)}
-      <Menu theme="dark" mode="horizontal" >
+      <Menu theme="dark" mode="horizontal"  >
       {/* defaultSelectedKeys={[" "]} */}
+      {/* selectedKeys={"Login" === pageContextual.highlight ? ['4'] : null} */}
       
 		<img src={logo} width="150" height="64" alt="logo" style={{float:"left", opacity: 0.98}}/>
         <Menu.Item key="1" onClick={homeLoader}>

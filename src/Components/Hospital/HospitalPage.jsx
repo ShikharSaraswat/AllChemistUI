@@ -3,7 +3,7 @@ import { Form, Input,  Button } from 'antd';
 import './HospitalPage.css';
 import context from '../../context';
 import HospitalHistory from '../HospitalHistory';
-import RegisterPatient from './RegisterPatient';
+import AddPrescription from "../Hospital/AddPrescription";
 import AddPatient from '../Patient/AddPatient';
 
 const HospitalPage = (props) => {
@@ -21,7 +21,7 @@ const HospitalPage = (props) => {
             pageContext.updatePage(<AddPatient />);
         }
         function addPrescription(){
-          pageContext.updatePage(<RegisterPatient />);
+          pageContext.updatePage(<AddPrescription />);
       }
         function viewHistory() {
          pageContext.updatePage(<HospitalHistory />);

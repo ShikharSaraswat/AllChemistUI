@@ -70,6 +70,35 @@ class ApiService {
         });
   }
 
+  upload(file,token) {
+   let formData = new FormData();
+
+   formData.append("file", file);
+
+   return axios.post(`${USER_API_BASE_URL}/upload/`,formData,{
+      headers: {
+         'Content-type': 'multipart/form-data; charset=UTF-8', Authorization: "Bearer " + token
+        }
+     });
+ }
+
+ savePrescription(prescription,token) {
+   return axios.post(`${USER_API_BASE_URL}/hospital/create`, prescription, {
+     headers: {
+       Authorization: "Bearer " + token
+       }
+    });
+  }
+
+  getFiles(id,token){
+   return axios.get(`${USER_API_BASE_URL}/files/${id}`, {
+      responseType: 'blob'
+      ,headers: {
+         'Accept': 'application/pdf',Authorization: "Bearer " + token
+        }
+     }); 
+  }
+
 }
 
 export default new ApiService();

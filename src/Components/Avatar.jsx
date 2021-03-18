@@ -6,7 +6,8 @@ import Login from "./Form/Login";
 function Avatar(props) {
   const pageContextual = useContext(PageContext);
   function loginLoader() {
-    pageContextual.updatePage(<Login />)
+    pageContextual.updatePage(<Login />);
+    pageContextual.updateHighlight("Login");
   }
   return (
     <img

@@ -14,6 +14,7 @@ const App = () => {
   const [flag,setFlag] = useState("Login"); 
   const [user,setUser] = useState({}); 
   const [token,setToken] = useState("");
+  const [highlight,setHighlight] = useState(" ");
   const [marker,setMarker] = useState(true);
   const providerValue = {
     page,
@@ -36,6 +37,10 @@ const App = () => {
     marker,
     updateMarker : (m)=>{
       setMarker(m)
+    },
+    highlight,
+    updateHighlight : (m)=>{
+      setHighlight(m)
     }
   };
 
