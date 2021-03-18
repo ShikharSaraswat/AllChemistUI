@@ -58,11 +58,6 @@ const PatientHome2 = (props) => {
     
   }
 
-  
-
-  
-
-
   return (
     <div className='box' >
       <Form {...layout} name="nest-messages"  >
@@ -111,7 +106,11 @@ const PatientHome2 = (props) => {
           <Button type="primary" onClick={updatePatient}>
             Update Details
               </Button>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;
+              <Button type="primary" onClick={viewHistory}>
+            View Prescription History
+              </Button>
+                &nbsp;&nbsp;
               <Button type="primary" onClick={viewHistory}>
             View Prescription History
               </Button>

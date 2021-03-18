@@ -9,8 +9,9 @@ import PageContext from '../src/context';
 
 
 const App = () => {
-
+  
   const [page, setPage] = React.useState(<Welcome />);
+
   const [flag,setFlag] = useState("Login"); 
   const [user,setUser] = useState({}); 
   const [token,setToken] = useState("");

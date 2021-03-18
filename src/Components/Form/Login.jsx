@@ -8,6 +8,7 @@ import HospitalHome from "../Hospital/HospitalHome";
 import ErrorPage from "../ErrorPage";
 import PageContext from '../../context';
 import PharmacyHome from "../Pharmacy/PharmacyHome";
+import AdminPage from "../Admin/AdminPage";
 
 
 
@@ -16,6 +17,7 @@ const Login = () => {
   const [marker, setMarker] = useState(false);
   //const [routeState,setRoutes] = useState(" ");
 
+  
   const [credentials, setCredentials] = useState({
     username: "",
     password: ""
@@ -38,6 +40,7 @@ const Login = () => {
 
   useEffect(()=>{
     if(marker){
+      // alert(context.token);
       ApiService.signIn(credentials).then(res => {
         const user = res.data;
         context.updateUser(user);
@@ -57,6 +60,9 @@ const Login = () => {
         } else if (role === "PHARMACY") {
           context.updatePage(<PharmacyHome />);
           context.updateFlag("pharmacy");
+        } else if (role === "ADMIN") {
+          context.updatePage(<AdminPage />);
+          context.updateFlag("admin");
         }
       }
       )

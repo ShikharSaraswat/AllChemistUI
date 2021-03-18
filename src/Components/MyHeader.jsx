@@ -5,11 +5,12 @@ import Login from "./Form/Login";
 import Home from "./Home/Home";
 import Helpdesk from "./Helpdesk";
 import About from "./About";
-import logo from "./LOGO2.jpg"
+import logo from "./LOGO.jpg"
 import PatientHome from "../Components/Patient/PatientHome";
 import PharmacyHome from '../Components/Pharmacy/PharmacyHome';
 import HospitalHome from '../Components/Hospital/HospitalHome';
 import { useState } from "react";
+import AdminPage from './Admin/AdminPage';
 //import Header from 'antd'; // Does not work
 
 const MyHeader = (props) => {
@@ -22,6 +23,13 @@ const MyHeader = (props) => {
 
   function loginLoader() {
     
+
+  // const homeLoader = () => {
+  //   pageContextual.updatePage(<Home />);
+  //  }
+
+  // const loginLoader = () => {
+   
     if(pageContextual.flag==="patient"){
   
       pageContextual.updatePage(<PatientHome />);
@@ -34,14 +42,16 @@ const MyHeader = (props) => {
      
       pageContextual.updatePage(<PharmacyHome />);
     }
+    if(pageContextual.flag==="admin"){
+      alert(pageContextual.flag);
+      pageContextual.updatePage(<AdminPage />);
+    }
     else if(pageContextual.flag==="Login"){
-      
-      pageContextual.updatePage(<Login />);
-    
+      pageContextual.updatePage(<Login />); 
     }
   }
 
-  function helpdeskLoader() { 
+  const helpdeskLoader = () => {
    pageContextual.updatePage(<Helpdesk />);
   }
 
@@ -57,6 +67,7 @@ const MyHeader = (props) => {
       {/* selectedKeys={"Login" === pageContextual.highlight ? ['4'] : null} */}
       
 		<img src={logo} width="150" height="64" alt="logo" style={{float:"left", opacity: 0.98}}/>
+       <Menu.Item/> 
         <Menu.Item key="1" onClick={homeLoader}>
           Home
         </Menu.Item>

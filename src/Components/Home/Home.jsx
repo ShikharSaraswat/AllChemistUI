@@ -1,10 +1,15 @@
 import Avatar from "../Avatar";
-import React from "react";
+import React, { useContext } from "react";
 import ControlledCarousel from "./ControlledCarousel";
 // import Login from "../Form/Login";
+import Context from '../../context';
 
 const Home = (props) => {
- 
+ const context = useContext(Context);
+  const goToLogin =() => {
+    context.updateFlag("Login");
+  }
+
   return (
     <>
       <ControlledCarousel></ControlledCarousel>
@@ -14,10 +19,10 @@ const Home = (props) => {
       <div style={{ margin: "auto "}}> 
 
       <ul className="Avtar">
-        <li>
-          <Avatar
+        <li onClick={goToLogin}>
+          <Avatar 
             imgUrl="https://i.pinimg.com/originals/68/fe/a2/68fea2a012cdd49ac888cbe9e95a7b6b.jpg"
-          />
+           on/>
         </li>
         <li>
           <Avatar

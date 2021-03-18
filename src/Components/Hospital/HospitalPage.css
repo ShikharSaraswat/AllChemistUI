@@ -19,3 +19,15 @@
     border: 1px solid #080808;
     box-shadow: 0 3px 3px rgb(54, 54, 54);
 }
+
+.buttonCard{
+    background-color: rgb(28, 13, 110);
+    font-family: sans-serif;
+    border:rgb(28, 13, 110);
+    box-shadow:  rgb(143, 139, 139);
+    margin-bottom: 3%;
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+    
+}
