@@ -67,10 +67,12 @@ const Login = () => {
       }
       )
         .catch(err => {
-          context.updatePage(<ErrorPage />);
+          // console.log(err.message)
+            context.updatePage(<ErrorPage error={err.message} />);
         });
 
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [marker])
 
 
