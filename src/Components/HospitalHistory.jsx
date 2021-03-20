@@ -12,9 +12,11 @@ const HospitalHistory = () => {
   const userContext = useContext(context);
   const [id, setId] = useState("");
   const [history, setHistory] = useState([]);
-  const [flag,setFlag] = useState(false);
+  //const [flag,setFlag] = useState(false);
   const [image,setImage] = useState();
-  var imageId = " ";
+  const [imageId, setImageId] = useState("");
+
+
   const [marker,setMarker] = useState(false);
   
   function getHistory() {
@@ -22,30 +24,15 @@ const HospitalHistory = () => {
   }
 
   const fetchImage=(e)=>{
-      setFlag(true);
-     imageId = e.target.name;
-     if(flag){
-      ApiService.getFiles(imageId,userContext.token).then(
-        files => {const blob = new Blob([files.data],{type: 'application/pdf'})
-        const url = window.URL.createObjectURL(blob)
-        setImage(url)
-         setFlag(false)              
-      }
-        ).catch(
-        error => console.log("AMCPH :" + error)
-      )
-      console.log(image)
-      window.open(image);
     
-    }
+     setImageId(e.target.name);
     
   }
 
   
 
   useEffect(()=>{
-     
-    if(marker){
+     if(marker){
       ApiService.fetchHistory(id, userContext.user.accessToken).then(res => 
         setHistory(res.data.reverse()),
         setMarker(false)
@@ -55,10 +42,33 @@ const HospitalHistory = () => {
       )
     
     }
-    
-     
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[marker])
+
+  useEffect(()=>{
+     
+    if(imageId){
+      ApiService.getFiles(imageId,userContext.token).then(
+        files => {const blob = new Blob([files.data],{type: 'application/pdf'})
+        const url = window.URL.createObjectURL(blob)
+        setImage(url)
+        //  setFlag(false)  
+         
+         
+      }
+        ).catch(
+        error => console.log("AMCPH :" + error)
+      )
+          
+      //console.log(image)
+      window.open(image);
+
+  }
+  setImageId(null)
+
+// eslint-disable-next-line react-hooks/exhaustive-deps
+  },[imageId])
 
 
 

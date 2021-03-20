@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext} from 'react';
 import { Form, Input, Button } from 'antd';
 import './Pharmacy.css';
 import PharmacyHistory from './PharmacyHistory';
@@ -20,7 +20,7 @@ const PharmacyPage = (props) => {
   };
 
   function viewHistory() {
-    PageContext.updatePage(<PharmacyHistory />);
+    userContext.updatePage(<PharmacyHistory />);
   }
 
   const logout = () => {

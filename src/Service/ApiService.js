@@ -139,6 +139,15 @@ class ApiService {
          }
       });
    }
+
+
+   invalidatePrescription(id,imageId,token){
+      return axios.get(USER_API_BASE_URL + '/pharmacy/invalidate_active_prescription/' +id+"/"+imageId, {
+         headers: {
+            Authorization: "Bearer " + token
+         }
+      }); 
+   }
 }
 
 

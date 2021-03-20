@@ -4,7 +4,7 @@ import 'tachyons';
 import context from '../../context';
 import ApiService from '../../Service/ApiService';
 import ErrorPage from '../ErrorPage';
-import { Form, Input, InputNumber, Button } from 'antd';
+import { Form, Input, Button } from 'antd';
 import PatientHistory from '../PatientHistory';
 import Login from "../Form/Login";
 import PageContext from '../../context';
@@ -14,11 +14,12 @@ import PageContext from '../../context';
 const PatientHome = () => {
   const userContext = useContext(context);
   const pageContextual = useContext(PageContext);
-  const USER_API_BASE_URL = 'http://localhost:8080/AllChemist/patient/details/';
+//  const USER_API_BASE_URL = 'http://localhost:8080/AllChemist/patient/details/';
   const user = userContext.user;
   const [patient, setPatient] = useState(userContext.user);
   //console.log(user);
   const marker = userContext.marker
+  // const [marker, setMarker] = useState(true);
   const [flag, setFlag] = useState(false);
 
 
@@ -86,10 +87,12 @@ const PatientHome = () => {
         console.log("API call from patient home")
         setPatient(res.data)
         userContext.updateMarker(false)
+        
 
       }).catch(e =>
-        userContext.updatePage(< ErrorPage error={e} />)
+        userContext.updatePage(< ErrorPage error={e}/>)
       )
+
     }
 
     if (flag) {
@@ -137,6 +140,7 @@ const PatientHome = () => {
     /* <PatientProfileForm  className='gr-2-2'
     patient={userContext.user}/>*/
     <div>
+    <h1 style={{textAlign: 'center'}}>PATIENT HOME</h1>
       <div className='box' >
         <Form {...layout} name="nest-messages"  >
           <Form.Item name='Username' label="username"  >

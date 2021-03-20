@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Form, Input, InputNumber, Button } from 'antd';
+import { Form, Input,Button } from 'antd';
 import ApiService from "../../Service/ApiService";
 import context from '../../context';
 
@@ -22,7 +22,7 @@ const RemovePharmacy = () => {
         if(marker){
           ApiService.removePharmacy(id,pageContext.token)
           .then(res => 
-            console.log(res.data))
+            alert(res.data))
           .catch( error => console.log(error))
         }
       },[marker])

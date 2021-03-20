@@ -9,7 +9,7 @@ import logo from "./LOGO.jpg"
 import PatientHome from "../Components/Patient/PatientHome";
 import PharmacyHome from '../Components/Pharmacy/PharmacyHome';
 import HospitalHome from '../Components/Hospital/HospitalHome';
-import { useState } from "react";
+// import { useState } from "react";
 import AdminPage from './Admin/AdminPage';
 //import Header from 'antd'; // Does not work
 
@@ -43,7 +43,7 @@ const MyHeader = (props) => {
       pageContextual.updatePage(<PharmacyHome />);
     }
     if(pageContextual.flag==="admin"){
-      alert(pageContextual.flag);
+      //alert(pageContextual.flag);
       pageContextual.updatePage(<AdminPage />);
     }
     else if(pageContextual.flag==="Login"){

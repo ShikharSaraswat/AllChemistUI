@@ -8,6 +8,7 @@ const HospitalHome = () => {
   
     return(
         <div>
+            <h1 style={{textAlign: 'center'}}>WELCOME {user.username.toUpperCase()}</h1>
             <HospitalPage user={user}/>
         </div>   
        

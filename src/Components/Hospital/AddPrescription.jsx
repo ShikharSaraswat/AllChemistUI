@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Form, Input, InputNumber, Button } from 'antd';
+import { Form, Input,Button } from 'antd';
 import './HospitalPage.css';
 import context from '../../context';
 import ApiService from '../../Service/ApiService';
-import UploadImages from '../Image/UploadImage';
-import HospitalPage from './HospitalPage';
+// import UploadImages from '../Image/UploadImage';
+// import HospitalPage from './HospitalPage';
 import HospitalHome from './HospitalHome';
 
 
@@ -62,6 +62,56 @@ const RegisterPatient = (props) => {
   console.log(presc);
   setFlag(true);
     
+  }
+
+  const validateForm = () => { 
+    var name =  document.getElementById('name');
+
+    var id =  document.getElementById('id');
+
+    var email =  document.getElementById('email');
+
+    var age = document.getElementById("age");
+
+    var bg = document.getElementById('bg');
+
+
+    if ((name.value.length>20) || (name.value.length<3)) { 
+      window.alert("Please enter your name,Size must be less than 20 characters.");
+      name.focus(); 
+      return false; 
+  }
+
+    if (id.value === "") { 
+      window.alert("Please enter patient id.");
+      id.focus(); 
+      return false;
+    }
+
+    var emailRegex = /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/;
+
+    if (email.value === "") { 
+            window.alert("Please enter a valid e-mail address."); 
+            email.focus(); 
+            return false; 
+    }else if(!(email.value.match(emailRegex))){
+      window.alert("Please enter a valid e-mail address."); 
+      return false;
+    }
+
+    if(age.value === ""){
+      window.alert("Please enter age.");
+      age.focus();
+      return false;
+    }
+
+    if (bg.selectedIndex < 1) { 
+      alert("Please select Blood Group."); 
+      bg.focus(); 
+      return false; 
+    }
+
+    savePrescription();
   }
   
   const changeHandler = (e) => {
@@ -131,10 +181,10 @@ const RegisterPatient = (props) => {
     <h1 style={{ alignContent: 'center' }}> Prescription </h1>
     <Form {...layout} name="nest-messages"  >
       <Form.Item name='Username' label="Name">
-        <Input name="name" onChange={changeHandler} className='pcm' />
+        <Input id="name" name="name" onChange={changeHandler} className='pcm' />
       </Form.Item>
       <Form.Item  label="ID" >
-        <Input type='text' name='patientId' className='pcm' value = {presc.patientId} onChange={changeHandler} />
+        <Input id="id" type='text' name='patientId' className='pcm' value = {presc.patientId} onChange={changeHandler} />
       </Form.Item>
       <Form.Item
         name='Email'
@@ -145,17 +195,18 @@ const RegisterPatient = (props) => {
           },
         ]}
       >
-        <Input name="email" onChange={changeHandler} className='pcm' />
+        <Input id="email" name="email" onChange={changeHandler} className='pcm' />
       </Form.Item>
       <Form.Item
         name='age'
         label="Age"
       >
-        <Input name="age" onChange={changeHandler} type='text' className='pcm' />
+        <Input id="age" name="age" onChange={changeHandler} type='text' className='pcm' />
       </Form.Item>
       <Form.Item name='BloodGroup' label="BloodGroup" >
-        <select name="bloodGroup" onChange={changeHandler} className='pcm'>
-          <option value="A_POSITIVE" defaultValue>A+</option>
+        <select id="bg" name="bloodGroup" onChange={changeHandler} className='pcm'>
+        <option value="default" defaultValue>Select BloodGroup</option>
+          <option value="A_POSITIVE" >A+</option>
           <option value="A_NEGATIVE">A-</option>
           <option value="B_POSITIVE">B+</option>
           <option value="B_NEGATIVE">B-</option>
@@ -196,7 +247,7 @@ const RegisterPatient = (props) => {
         </div>
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-        <Button type="primary" onClick = {savePrescription}>
+        <Button type="primary" onClick = {validateForm}>
           Save
               </Button>
               &nbsp;&nbsp;&nbsp;

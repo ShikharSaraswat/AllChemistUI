@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState }from 'react';
+import React, { useContext}from 'react';
 import { Form, Input,  Button } from 'antd';
 import './HospitalPage.css';
 import context from '../../context';
@@ -32,16 +32,18 @@ const HospitalPage = (props) => {
         }
 
         const logout = () => {
-    
+          userContext.updateUser({});
+          userContext.updateToken("");
           userContext.updatePage(<Login />);
           pageContextual.updateFlag("Login");
         
         }
       
         return (
-            <div className='box' >
+          <div className='box' >
+              
           <Form {...layout} name="nest-messages"  >
-            <h1 style={{alignItems : 'center'}}>"WELCOME {props.user.username} "</h1>
+            
           <Form.Item name='ID' label="ID" >
               <Input className='pcm' disabled value={props.user.roleId} placeholder={props.user.roleId}/>
             </Form.Item>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Button } from 'antd';
 import context from "../../context";
 import HospitalRegistration from "./HospitalRegistration";
@@ -42,7 +42,7 @@ const AdminPage = () => {
 
   return (
     <div className="adminBox">
-      <div><h3 > administrator authority page </h3></div>
+      <div><h3 > Administrator Authority Page </h3></div>
       <div>
         <Button className="buttonCard" type="primary" onClick={registerHospital}>
           Register Hospital

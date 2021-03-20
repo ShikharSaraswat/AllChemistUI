@@ -7,15 +7,21 @@ function Avatar(props) {
   const pageContextual = useContext(PageContext);
   function loginLoader() {
     pageContextual.updatePage(<Login />);
-    pageContextual.updateHighlight("Login");
   }
   return (
+    <div class="zoom">
+    <div class="container">
     <img
       className="circle-img"
-      onClick={loginLoader} 
       src={props.imgUrl}
       alt="avatar_img"
     />
+    <div  class="overlay">
+    <div onClick={loginLoader} class="text">{props.value}</div>
+  </div>
+     {/* <div class="centered">{props.value}</div> */}
+    </div>
+    </div>
   );
 }
 export default Avatar;

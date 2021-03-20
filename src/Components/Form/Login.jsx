@@ -75,8 +75,15 @@ const Login = () => {
 
 
   function signIn(e) {
-    e.preventDefault();
-    setMarker(true);
+   e.preventDefault();
+    if(credentials.username&&credentials.password){
+      setMarker(true);
+    }else{
+      alert("Please enter username and password to login.")
+    }
+      
+    
+    
 }
 
   //  if(flag===1){//    navigate('/p');// }else if(flag ===2){// }else if(flag ===3){// }// useRedirect('/p', '/patient');
@@ -86,12 +93,12 @@ const Login = () => {
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>User Name</Form.Label>
-          <Form.Control type="text" name='username' value={credentials.username} onChange={changeHandling1} placeholder="Enter your username" />
+          <Form.Control  type="text" name='username' value={credentials.username} onChange={changeHandling1} placeholder="Enter your username" />
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" name='password' value={credentials.password} onChange={changeHandling2} placeholder="Password" />
+          <Form.Control  type="password" name='password' value={credentials.password} onChange={changeHandling2} placeholder="Password"  />
         </Form.Group>
         <Button onClick={signIn} variant="primary" type="submit">
           Login

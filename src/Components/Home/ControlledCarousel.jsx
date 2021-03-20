@@ -5,15 +5,15 @@ import './ControlledCarousel.css';
 
 
 function ControlledCarousel() {
-    const [index, setIndex] = React.useState(0);
-  
-    const handleSelect = (selectedIndex, e) => {
-      setIndex(selectedIndex);
-    };
-  
-    return (
-      
-      <div className="carousel">
+  const [index, setIndex] = React.useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+
+  return (
+
+    <div className="carousel">
       <Carousel activeIndex={index} onSelect={handleSelect}>
         <Carousel.Item>
           <img
@@ -22,8 +22,9 @@ function ControlledCarousel() {
             alt="First slide"
           />
           <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h3>Your health information securely
+in one place</h3>
+            <p>Access to your record is in your control.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -32,10 +33,10 @@ function ControlledCarousel() {
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwMx4EAkbFnjRG1sMZ1DhAWHiXlruBEUV_Uw&usqp=CAU"
             alt="Second slide"
           />
-  
+
           <Carousel.Caption>
-            <h2>Second slide label wrhgwrg eawfwef wedfgwerg we dfgwergf</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h2>For healthcare professionals</h2>
+            <p>Healthcare professionals can access patients’ records in AllChemist system through conformant clinical information systems.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -44,18 +45,18 @@ function ControlledCarousel() {
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzl4taSDHCcip9-9JEXeayHsKNftaUb8COWA&usqp=CAU"
             alt="Third slide"
           />
-  
+
           <Carousel.Caption>
-            <h3>Third slide label</h3>
+            <h3>For pharmaceutical vendors</h3>
             <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+              Securely manage customer prescriptions.
             </p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      </div>
-    );
-   
-  }
-  
-  export default ControlledCarousel;
+    </div>
+  );
+
+}
+
+export default ControlledCarousel;
