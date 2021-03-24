@@ -56,6 +56,7 @@ const PatientHome = () => {
     userContext.updateToken(" ");
     userContext.updatePage(<Login />);
     pageContextual.updateFlag("Login");
+    pageContextual.updateMarker(true);
     
   }
   // axios.interceptors.response.use(
@@ -84,13 +85,14 @@ const PatientHome = () => {
       ApiService.fetchPatientById(user.roleId, user.accessToken).then(res => {
 
         userContext.updateUser(res.data)
-        console.log("API call from patient home")
+        //console.log("API call from patient home")
         setPatient(res.data)
         userContext.updateMarker(false)
+        //setMarker(false)
         
 
       }).catch(e =>
-        userContext.updatePage(< ErrorPage error={e}/>)
+        userContext.updatePage(< ErrorPage error={e.message}/>)
       )
 
     }

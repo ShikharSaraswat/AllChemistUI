@@ -33,7 +33,7 @@ const HospitalRegistration = () => {
   useEffect(() => {
     if(check){
       ApiService.registerHospital(hospital,pageContext.token)
-      .then(res => alert("Hospital registered successfully"),
+      .then(res => alert("Hospital registered successfully with ID : " + res.data.id ),
         pageContext.updatePage(<AdminPage />)
       )
       .catch( error => alert("Hospital could not be added, try again."))

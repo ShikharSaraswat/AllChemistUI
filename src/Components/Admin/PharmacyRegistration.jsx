@@ -87,7 +87,7 @@ const PharmacyRegistration = () => {
         if (marker) {
             ApiService.registerPharmacy(pharmacy, pageContext.token)
             .then(res => {
-                alert("Pharmacy registered successfully")
+                alert("Pharmacy registered successfully with ID : "+res.data.id)
                 pageContext.updatePage(<AdminPage />)
                 setMarker(false);
             }

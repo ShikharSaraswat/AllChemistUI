@@ -54,7 +54,7 @@ const Login = () => {
           context.updatePage(<PatientHome />);
           context.updateFlag("patient");
         } else if (role === "HOSPITAL") {
-          alert("in hospital");
+          // alert("in hospital");
           context.updatePage(<HospitalHome />);
           context.updateFlag("hospital");
         } else if (role === "PHARMACY") {
