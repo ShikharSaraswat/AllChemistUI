@@ -61,7 +61,7 @@ const MyHeader = (props) => {
 
   return (
     <>
-    {console.log(pageContextual.flag)}
+    {/* {console.log(pageContextual.flag)} */}
       <Menu theme="dark" mode="horizontal"  >
       {/* defaultSelectedKeys={[" "]} */}
       {/* selectedKeys={"Login" === pageContextual.highlight ? ['4'] : null} */}
