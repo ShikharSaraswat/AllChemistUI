@@ -1,4 +1,4 @@
-#AllChemist
+# AllChemist
 
 This is a tailor made front-end application developed using React for a medical hospital. The application provides an intuitive user interface to manage hospital operations and improve the patient experience. The app is developed in a modular way and can be easily extended and customized to suit the specific needs of the hospital.
 
